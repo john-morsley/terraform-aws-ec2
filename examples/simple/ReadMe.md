@@ -1,0 +1,14 @@
+﻿# Simple EC2
+
+In this example we will create a simple EC2 instance.
+
+What constitutes a simple EC2 instance?
+
+The assumption here is that this is the minimal EC2 instance possible and 
+therefore consists of:
+
+1 - A simple VPC (via our VPC plugin)
+2 - An EC2 instance
+3 - Private and publidc keys
+4 - 
+5 - 
