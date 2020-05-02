@@ -1,25 +1,29 @@
-﻿##### #
-# VPC #
-# #####
-#
-module "vpc" {
+﻿#      ______    _____   ___  
+#     |  ____|  / ____| |__ \ 
+#     | |__    | |         ) |
+#     |  __|   | |        / / 
+#     | |____  | |____   / /_ 
+#     |______|  \_____| |____|
+#                         
 
-  source = "./../terraform-aws-vpc"
-  #source = "john-morsley/terraform-aws-vpc"
+resource "aws_instance" "this" {
 
-  name = "simple-ec2-example"
+  ami              = var.ami
+  instance_type    = var.instance_type
 
-  cidr_block = "10.0.0.0/16" # 65,531 (65,536 possible - 5 reserved by AWS)
+  iam_instance_profile = var.iam_instance_profile_name
 
-  public_subnets  = ["10.0.0.0/24"] # 251 (256 possible - 5 reserved by AWS)
+  subnet_id = var.public_subnet_id
 
+  monitoring             = true
+  
   tags = {
-    Owner = "john-doe"
+    Name = "${var.name}-ec2"
   }
 
 }
 
-############## #
-# EC2 Instance #
-# ##############
-#
+# Note
+# ====
+# Terraform Resource: aws_instance
+# https://www.terraform.io/docs/providers/aws/r/instance.html

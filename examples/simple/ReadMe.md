@@ -8,7 +8,8 @@ The assumption here is that this is the minimal EC2 instance possible and
 therefore consists of:
 
 1 - A simple VPC (via our VPC plugin)
-2 - An EC2 instance
-3 - Private and publidc keys
+2 - An IAM instance profile 
+3 - An EC2 instance
+3 - Private and public keys
 4 - 
 5 - 
