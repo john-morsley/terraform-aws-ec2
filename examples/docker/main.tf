@@ -12,7 +12,7 @@ module "ec2" {
   name = "docker"
 
   ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.medium" # Minimum for Docker
+  instance_type = var.instance_type
 
   vpc_id = module.vpc.vpc_id
 

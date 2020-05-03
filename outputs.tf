@@ -23,11 +23,18 @@ output "private_dns" {
   value = aws_instance.this.private_ip
 }
 
-output "private_key" {
-  value = module.keys.private_key_pem
+output "private_ip" {
+  value = aws_instance.this.private_ip
 }
-# join("", tls_private_key.this.*.private_key_pem)
+
+//output "private_key" {
+//  value = module.keys.private_key_pem
+//}
+
+output "encoded_private_key" {
+  value = base64encode(module.keys.private_key_pem)
+}
 
 output "ssh_command" {
-  value = "chmod 400 keys/${var.name}* && ssh -i \"keys/${var.name}.pem\" ubuntu@${aws_instance.this.public_dns}"
+  value = "chmod 400 ${var.name}-keys/${var.name}* && ssh -i \"${var.name}-keys/${var.name}.pem\" ubuntu@${aws_instance.this.public_dns}"
 }

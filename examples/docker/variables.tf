@@ -11,3 +11,7 @@ variable "secret_key" {}
 variable "region" {
   default = "eu-west-2" # London
 }
+
+variable "instance_type" {
+  default = "t2.medium" # Minimum for Docker
+}
