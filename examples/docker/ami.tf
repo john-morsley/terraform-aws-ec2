@@ -5,7 +5,7 @@
 #      / ____ \  | |  | |  _| |_
 #     /_/    \_\ |_|  |_| |_____|
 
-# Amazon Machine Image
+# AMAZON MACHINE IMAGE
 
 data "aws_ami" "ubuntu" {
 

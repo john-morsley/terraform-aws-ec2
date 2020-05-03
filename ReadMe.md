@@ -1,4 +1,4 @@
-﻿# Terraform an EC2 instance in AWS
+# Terraform an EC2 instance in AWS
 
 ## Examples
 

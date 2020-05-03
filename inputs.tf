@@ -1,4 +1,4 @@
-﻿#      _____                   _       
+#      _____                   _       
 #     |_   _|                 | |      
 #       | |  _ __  _ __  _   _| |_ ___
 #       | | | '_ \| '_ \| | | | __/ __|
@@ -8,26 +8,29 @@
 #             |_|                  
 
 variable "vpc_id" {
-  type        = string
+  type = string
 }
 
 variable "name" {
-  type        = string
+  type = string
 }
 
 variable "ami" {
-  type        = string
-  default     = ""
+  type = string
 }
 
 variable "instance_type" {
-  type        = string
+  type = string
 }
 
 variable "iam_instance_profile_name" {
-  type        = string
+  type = string
 }
 
 variable "public_subnet_id" {
-  type        = string
+  type = string
+}
+
+variable "security_group_ids" {
+  type = list(string)
 }

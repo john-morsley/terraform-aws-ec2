@@ -1,4 +1,4 @@
-﻿#      ______    _____   ___  
+#      ______    _____   ___  
 #     |  ____|  / ____| |__ \ 
 #     | |__    | |         ) |
 #     |  __|   | |        / / 
@@ -8,14 +8,20 @@
 
 resource "aws_instance" "this" {
 
-  ami              = var.ami
-  instance_type    = var.instance_type
+  ami = var.ami
+  instance_type = var.instance_type
 
   iam_instance_profile = var.iam_instance_profile_name
 
   subnet_id = var.public_subnet_id
 
-  monitoring             = true
+  monitoring = true
+
+  vpc_security_group_ids = var.security_group_ids
+
+  associate_public_ip_address = true
+  
+  key_name = module.keys.key_name
   
   tags = {
     Name = "${var.name}-ec2"
