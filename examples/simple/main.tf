@@ -23,7 +23,7 @@ module "ec2" {
 
   public_subnet_id = module.vpc.public_subnet_id
 
-  security_group_ids = module.vpc.security_group_ids
+  #security_group_ids = module.vpc.security_group_ids
 
   //  tags = {
   //    "Terraform" = "true"
@@ -39,8 +39,8 @@ resource "null_resource" "is-ec2-ready" {
 
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
-  provisioner "remote-exec" {
-    command = "chmod +x is_ec2_ready.sh && bash is_ec2_ready.sh"
+  provisioner "local-exec" {
+    command = "chmod +x is_ec2_ready.sh && bash is_ec2_ready.sh ${module.ec2.name}"
   }
 
 }

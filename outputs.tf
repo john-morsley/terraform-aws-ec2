@@ -7,6 +7,10 @@
 #                      | |                  
 #                      |_|
 
+output "name" {
+  value = local.name
+}
+
 output "key_pair" {
   value = module.keys.key_pair
 }
