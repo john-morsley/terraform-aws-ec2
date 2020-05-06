@@ -6,6 +6,8 @@
 #     |______|  \_____| |____|
 #                         
 
+# https://www.terraform.io/docs/providers/aws/r/instance.html
+
 resource "aws_instance" "this" {
 
   ami = var.ami
@@ -29,7 +31,16 @@ resource "aws_instance" "this" {
 
 }
 
-# Note
-# ====
-# Terraform Resource: aws_instance
-# https://www.terraform.io/docs/providers/aws/r/instance.html
+# https://www.terraform.io/docs/providers/null/resource.html
+
+resource "null_resource" "is-ec2-ready" {
+
+  depends_on = [aws_instance.this]
+
+  # https://www.terraform.io/docs/provisioners/local-exec.html
+
+  provisioner "local-exec" {
+    command = "chmod +x is_ec2_ready.sh && bash is_ec2_ready.sh ${local.name}"
+  }
+
+}

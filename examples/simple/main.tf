@@ -30,17 +30,3 @@ module "ec2" {
   //  }
   
 }
-
-# https://www.terraform.io/docs/providers/null/resource.html
-
-resource "null_resource" "is-ec2-ready" {
-
-  depends_on = [module.ec2]
-
-  # https://www.terraform.io/docs/provisioners/local-exec.html
-
-  provisioner "local-exec" {
-    command = "chmod +x is_ec2_ready.sh && bash is_ec2_ready.sh ${module.ec2.name}"
-  }
-
-}
