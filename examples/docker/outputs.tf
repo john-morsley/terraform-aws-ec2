@@ -22,3 +22,11 @@ output "ec2_public_dns" {
 output "ssh_command" {
   value = module.ec2.ssh_command
 }
+
+output "encoded_private_key" {
+  value = module.ec2.encoded_private_key
+}
+
+output "decoded_private_key" {
+  value = base64decode(module.ec2.encoded_private_key)
+}

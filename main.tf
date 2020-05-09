@@ -40,7 +40,8 @@ resource "null_resource" "is-ec2-ready" {
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
-    command = "chmod +x is_ec2_ready.sh && bash is_ec2_ready.sh ${local.name}"
+    #command = "chmod +x ${path.module}/is_ec2_ready.sh && bash ${path.module}/is_ec2_ready.sh ${local.name}"
+    command = "bash ${path.module}/is_ec2_ready.sh ${local.name}"
   }
 
 }

@@ -20,7 +20,7 @@ module "ec2" {
 
   public_subnet_id = module.vpc.public_subnet_id
 
-  security_group_ids = module.vpc.security_group_ids
+  #security_group_ids = module.vpc.security_group_ids
 
   //  tags = {
   //    "Terraform" = "true"
