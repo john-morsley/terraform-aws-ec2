@@ -4,14 +4,13 @@
 #       \ \/ /   |  ___/  | |     
 #        \  /    | |      | |____
 #         \/     |_|       \_____|
-#                             
 
 module "vpc" {
 
   source = "./../../../terraform-aws-vpc"
   #source = "john-morsley/terraform-aws-vpc"
 
-  name = "simple-ec2-example"
+  name = "docker-ec2-example"
 
   cidr_block = var.cidr_block
 

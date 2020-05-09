@@ -31,10 +31,6 @@ output "private_ip" {
   value = aws_instance.this.private_ip
 }
 
-//output "private_key" {
-//  value = module.keys.private_key_pem
-//}
-
 output "encoded_private_key" {
   value = base64encode(module.keys.private_key_pem)
 }

@@ -11,8 +11,7 @@
 #          | |__| | | | (_) | |_| | |_) |
 #           \_____|_|  \___/ \__,_| .__/ 
 #                                 | |    
-#                                 |_|    
-#         
+#                                 |_|     
 
 module "allow-ssh" {
 
@@ -31,7 +30,14 @@ module "allow-ssh" {
     protocol    = "tcp"
     cidr_blocks = var.public_subnet_cidr
   }]
-  
+
+  egress = [{
+    description = "Allow SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = var.public_subnet_cidr
+  }]
   
   #cidr_block = "10.0.0.0/16" # 65,531 (65,536 possible - 5 reserved by AWS)
 

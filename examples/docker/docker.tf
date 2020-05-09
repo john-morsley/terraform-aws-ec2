@@ -15,7 +15,7 @@ resource "null_resource" "install-docker" {
     type        = "ssh"
     host        = module.ec2.public_ip
     user        = "ubuntu"
-    private_key = module.ec2.private_key
+    private_key = base64decode(module.ec2.encoded_private_key)
   }
 
   # https://www.terraform.io/docs/provisioners/file.html
@@ -43,7 +43,7 @@ resource "null_resource" "is-docker-ready" {
     type        = "ssh"
     host        = module.ec2.public_ip
     user        = "ubuntu"
-    private_key = module.ec2.private_key
+    private_key = base64decode(module.ec2.encoded_private_key)
   }
 
   # https://www.terraform.io/docs/provisioners/file.html
