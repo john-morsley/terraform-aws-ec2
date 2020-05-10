@@ -9,7 +9,12 @@
 
 resource "null_resource" "install-docker" {
 
-  depends_on = [module.ec2]
+  depends_on = [
+    module.vpc,
+    module.iam,
+    module.ec2, 
+    module.allow-ssh
+  ]
 
   connection {
     type        = "ssh"

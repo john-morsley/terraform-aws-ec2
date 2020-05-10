@@ -19,7 +19,7 @@ resource "aws_instance" "this" {
 
   monitoring = true
 
-  #vpc_security_group_ids = var.security_group_ids
+  security_groups = var.security_group_ids
 
   associate_public_ip_address = true
   

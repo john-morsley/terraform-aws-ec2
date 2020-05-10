@@ -28,15 +28,15 @@ module "allow-ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = var.all_cidr_block
+    cidr_blocks = [ var.all_cidr_block ]
   }]
 
   egress = [{
-    description = "Allow SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = var.all_cidr_block
+    description = "Allow All"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [ var.all_cidr_block ]
   }]
   
   #tags = {
