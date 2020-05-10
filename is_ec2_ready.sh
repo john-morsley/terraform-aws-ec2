@@ -47,8 +47,6 @@ do
 
     if [[ -z "${raw_instance_ids}" ]]; then
         echo "Cannot find instance."
-        #echo "EC2 IS NOT READY :-("
-        #exit 666
     else
         echo "Found!"
         break
@@ -117,14 +115,15 @@ is_ec2_ready() {
     echo "System Status: '${system_status}'"
     
     if [[ "$instance_status" != "passed" || "$system_status" != "passed" ]]; then
-        #echo "EC2 is failing status checks"
         return 0
     fi
     
+    ready=true
     return 1
 
 }
 
+ready=false
 while [[ elapsed -le TIMEOUT*60 ]]
 do
     echo "elapsed: ${elapsed}s"
@@ -140,6 +139,10 @@ do
 
 done
 
-echo 'EC2 IS READY :-)'
+if [[ "$ready" == true ]]; then
+    echo 'EC2 IS READY :-)'
+    exit 0
+fi 
 
-exit 0
+echo 'EC2 IS NOT READY :-('
+exit 666
