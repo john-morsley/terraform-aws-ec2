@@ -31,3 +31,8 @@ variable "public_subnet_cidr" {
   type = list(string)
   default = ["10.0.0.0/24"] # 251 (256 possible - 5 reserved by AWS) 
 }
+
+variable "all_cidr_block" {
+  type = string
+  default = "0.0.0.0/0" # All possible IP address range 
+}

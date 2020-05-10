@@ -28,7 +28,7 @@ module "allow-ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = var.public_subnet_cidr
+    cidr_blocks = var.all_cidr_block
   }]
 
   egress = [{
@@ -36,13 +36,9 @@ module "allow-ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = var.public_subnet_cidr
+    cidr_blocks = var.all_cidr_block
   }]
   
-  #cidr_block = "10.0.0.0/16" # 65,531 (65,536 possible - 5 reserved by AWS)
-
-  #public_subnets = ["10.0.0.0/24"] # 251 (256 possible - 5 reserved by AWS)
-
   #tags = {
   #  Owner = "john-doe"
   #}
