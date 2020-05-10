@@ -1,4 +1,4 @@
-﻿﻿#!/bin/sh
+﻿#!/bin/bash
 
 #  _____       ______ _____ ___    _____                _         ___  
 # |_   _|     |  ____/ ____|__ \  |  __ \              | |       |__ \ 
@@ -15,6 +15,7 @@
 
 # Expects:
 # 1 --> NAME (Required): The name of the EC2 instance we are checking.
+# 2 --> TIMEOUT, in minutes (Optional, default: 5)
 
 NAME=$1
 if [[ -z "${NAME}" ]]; then
@@ -23,30 +24,68 @@ if [[ -z "${NAME}" ]]; then
 fi
 echo "NAME: ${NAME}"
 
+TIMEOUT=$2
+if [[ -z "${TIMEOUT}" ]]; then
+    echo "No TIMEOUT supplied, so defaulting to 5 minutes."
+    TIMEOUT=5
+fi
+echo "TIMEOUT: ${TIMEOUT} (minutes)"
+
 echo 'IS EC2 READY...?'
 
-#aws ec2 describe-instances | jq .
-reservations_json=$(aws ec2 describe-instances)
+echo "Looking for instance: '${NAME}'"
 
-instance_id=$(jq --raw-output --arg name "$NAME" '.Reservations[].Instances[] as $instance | $instance.Tags[] | select(.Key=="Name") | .Value==$name | contains(true)? | if true then $instance | .InstanceId else null end' <<< $reservations_json)
-echo "Instance ID: ${instance_id}"
+elapsed=0
+while [[ elapsed -le TIMEOUT*60 ]]
+do
+    echo "Elapsed: ${elapsed}s"
+    
+    reservations_json=$(aws ec2 describe-instances --filter Name=instance-state-code,Values="16")
+    # The valid values are: 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped). 
 
-#aws ec2 describe-instance-status --instance-ids $instance_id
+    raw_instance_ids="$(jq --raw-output --arg name "$NAME" '.Reservations[].Instances[] as $instance | $instance.Tags[] | select(.Key=="Name") | .Value==$name | contains(true)? | if true then $instance | .InstanceId else null end' <<< $reservations_json)"
+
+    if [[ -z "${raw_instance_ids}" ]]; then
+        echo "Cannot find instance."
+        #echo "EC2 IS NOT READY :-("
+        #exit 666
+    else
+        echo "Found!"
+        break
+    fi
+
+    sleep 5
+    elapsed=$((elapsed + 5))
+
+done
+
+set -f
+IFS='
+'
+read -rd '' -a split_instance_ids <<< $raw_instance_ids
+unset IFS
+count=0
+for instance_id in "${split_instance_ids[@]}"; do
+  echo "Instance ID: $instance_id"
+  count=$((count + 1))
+done
+set +f
+echo "count: ${count}"
+
+if [[ count -gt 1 ]]; then
+  echo "Found more than one instance with name: '${NAME}'"
+  echo "EC2 IS NOT READY :-("
+  exit 666
+fi
 
 is_empty() {
 
-    #echo "is_empty?"
-
     instance_statuses=$1
     
-    #echo $instance_statuses
-    
     if [[ -z "$(jq '.InstanceStatuses[]' <<< $instance_statuses)" ]]; then
-        #echo "Yes"
         return 1
     fi 
     
-    #echo "No"
     return 0
 
 }
@@ -55,11 +94,7 @@ is_ec2_ready() {
 
     instance_statuses=$(aws ec2 describe-instance-status --instance-ids $instance_id)
 
-    #echo $instance_statuses | jq [.]
-
     is_empty "${instance_statuses}"
-
-    #echo "is_empty:$1"
 
     if [[ $1 -eq 1 ]]; then
         return 0
@@ -70,11 +105,8 @@ is_ec2_ready() {
     echo "Instance State: '${instance_state}'"
     
     if [[ "$instance_state" != "running" ]]; then
-        #echo "EC2 is not running"
         return 0
     fi
-    
-    #echo "EC2 is 'running'"
     
     instance_status=$(jq --raw-output '.InstanceStatuses[].InstanceStatus.Details[] | select(.Name=="reachability") | .Status' <<< $instance_statuses)
     
@@ -89,13 +121,13 @@ is_ec2_ready() {
         return 0
     fi
     
-    #echo "EC2 is passing status checks"
     return 1
 
 }
 
-while true
+while [[ elapsed -le TIMEOUT*60 ]]
 do
+    echo "elapsed: ${elapsed}s"
     
     is_ec2_ready
 
@@ -104,6 +136,7 @@ do
     fi
 
     sleep 5
+    elapsed=$((elapsed + 5))
 
 done
 
