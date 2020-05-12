@@ -21,8 +21,8 @@ module "allow-ssh" {
   name = "docker"
   description = "To allow SSH to set up Docker."
 
-  vpc_id = module.docker-vpc.vpc_id
-  
+  vpc_id = module.rke-vpc.vpc_id
+
   ingress = [{
     description = "Allow SSH"
     from_port   = 22
@@ -38,5 +38,7 @@ module "allow-ssh" {
     protocol    = "-1"
     cidr_blocks = [ var.all_cidr_block ]
   }]
+
+  tags = local.m
   
 }

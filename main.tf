@@ -3,8 +3,7 @@
 #     | |__    | |         ) |
 #     |  __|   | |        / / 
 #     | |____  | |____   / /_ 
-#     |______|  \_____| |____|
-#                         
+#     |______|  \_____| |____| 
 
 # https://www.terraform.io/docs/providers/aws/r/instance.html
 
@@ -25,10 +24,8 @@ resource "aws_instance" "this" {
   
   key_name = module.keys.key_name
   
-  tags = {
-    Name = local.name
-  }
-
+  tags = local.merged_tags
+  
 }
 
 # https://www.terraform.io/docs/providers/null/resource.html

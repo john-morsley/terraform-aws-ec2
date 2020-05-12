@@ -21,10 +21,12 @@ variable "ami" {
 
 variable "instance_type" {
   type = string
+  default = "t2.nano"
 }
 
 variable "iam_instance_profile_name" {
   type = string
+  default = null
 }
 
 variable "public_subnet_id" {
@@ -33,4 +35,10 @@ variable "public_subnet_id" {
 
 variable "security_group_ids" {
   type = list(string)
+}
+
+variable "tags" {
+  description = "Additional tags for all resources"
+  type        = map(string)
+  default     = {}
 }

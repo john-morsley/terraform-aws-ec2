@@ -1,11 +1,11 @@
-#     __      __  _____     _____
+﻿#     __      __  _____     _____
 #     \ \    / / |  __ \   / ____|
 #      \ \  / /  | |__) | | |     
 #       \ \/ /   |  ___/  | |     
 #        \  /    | |      | |____
 #         \/     |_|       \_____|
 
-module "docker-vpc" {
+module "rke-vpc" {
 
   source = "./../../../terraform-aws-vpc"
   #source = "john-morsley/terraform-aws-vpc"
@@ -15,5 +15,9 @@ module "docker-vpc" {
   cidr_block = var.cidr_block
 
   public_subnets = var.public_subnet_cidr
-  
+
+  tags = {
+    Owner = "john-doe"
+  }
+
 }

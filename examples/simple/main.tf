@@ -1,14 +1,11 @@
-#      ______                           _      
-#     |  ____|                         | |     
-#     | |__  __  ____ _ _ __ ___  _ __ | | ___ 
-#     |  __| \ \/ / _` | '_ ` _ \| '_ \| |/ _ \
-#     | |____ >  < (_| | | | | | | |_) | |  __/
-#     |______/_/\_\__,_|_| |_| |_| .__/|_|\___|
-#                                | |           
-#                                |_|           
-#
+#      ______    _____   ___  
+#     |  ____|  / ____| |__ \ 
+#     | |__    | |         ) |
+#     |  __|   | |        / / 
+#     | |____  | |____   / /_ 
+#     |______|  \_____| |____| 
 
-module "ec2" {
+module "simple-ec2" {
 
   source = "./../../../terraform-aws-ec2"
 
@@ -19,14 +16,10 @@ module "ec2" {
 
   vpc_id = module.vpc.vpc_id
 
-  iam_instance_profile_name = module.iam.instance_profile_name
+  #iam_instance_profile_name = module.iam.instance_profile_name
 
   public_subnet_id = module.vpc.public_subnet_id
 
-  #security_group_ids = module.vpc.security_group_ids
-
-  //  tags = {
-  //    "Terraform" = "true"
-  //  }
+  security_group_ids = [ module.vpc.public_subnet_id ]
   
 }
