@@ -17,28 +17,17 @@ variable "region" {
   default = "eu-west-2" # London
 }
 
-variable "cidr_block" {
+variable "vpc_cidr" {
   type = string
   default = "10.0.0.0/16" # 65,531 (65,536 possible - 5 reserved by AWS) 
 }
 
-variable "public_subnet_cidr" {
+variable "public_subnet_cidrs" {
   type = list(string)
   default = ["10.0.0.0/24"] # 251 (256 possible - 5 reserved by AWS) 
-}
-
-variable "all_cidr_block" {
-  type = string
-  default = "0.0.0.0/0" # All possible IP address range 
 }
 
 variable "cluster_name" {
   type = string
   default = "rke-example"
 }
-
-//variable "tags" {
-//  description = "Additional tags for all resources"
-//  type        = map(string)
-//  default     = {}
-//}

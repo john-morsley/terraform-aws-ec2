@@ -13,14 +13,12 @@ module "rke-ec2" {
 
   ami = data.aws_ami.ubuntu.id
 
-  vpc_id = module.rke-vpc.vpc_id
+  vpc_id = module.rke-vpc.id
 
   public_subnet_id = module.rke-vpc.public_subnet_id
 
   security_group_ids = [ module.allow-ssh.id ]
 
-  tags = {
-    "${local.cluster_id}" = "owned"
-  }
+  tags = local.cluster_id_tag
 
 }

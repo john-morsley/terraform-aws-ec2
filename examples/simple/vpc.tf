@@ -13,12 +13,9 @@ module "vpc" {
 
   name = "simple-ec2-example"
 
-  cidr_block = "10.0.0.0/16" # 65,531 (65,536 possible - 5 reserved by AWS)
+  vpc_cidr = "10.0.0.0/16" # 65,531 (65,536 possible - 5 reserved by AWS)
 
-  public_subnets = ["10.0.0.0/24"] # 251 (256 possible - 5 reserved by AWS)
-
-  tags = {
-    Owner = "john-doe"
-  }
-
+  public_subnet_cidrs = ["10.0.1.0/24"] # 251 (256 possible - 5 reserved by AWS)
+  #private_subnet_cidrs = ["10.0.2.0/24"] # 251 (256 possible - 5 reserved by AWS)
+  
 }

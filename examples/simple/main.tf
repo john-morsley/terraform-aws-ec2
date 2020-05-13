@@ -14,7 +14,7 @@ module "simple-ec2" {
   ami = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
 
-  vpc_id = module.vpc.vpc_id
+  vpc_id = module.vpc.id
 
   #iam_instance_profile_name = module.iam.instance_profile_name
 

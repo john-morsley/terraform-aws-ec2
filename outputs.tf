@@ -7,6 +7,10 @@
 #                      | |                  
 #                      |_|
 
+output "id" {
+  value = aws_instance.this.id
+}
+
 output "name" {
   value = local.name
 }
@@ -31,8 +35,12 @@ output "private_ip" {
   value = aws_instance.this.private_ip
 }
 
+output "encoded_public_key" {
+  value = base64encode(module.keys.public_key)
+}
+
 output "encoded_private_key" {
-  value = base64encode(module.keys.private_key_pem)
+  value = base64encode(module.keys.private_key)
 }
 
 output "ssh_command" {

@@ -12,12 +12,10 @@ module "rke-vpc" {
 
   name = "docker-ec2-example"
 
-  cidr_block = var.cidr_block
+  vpc_cidr = var.vpc_cidr
 
-  public_subnets = var.public_subnet_cidr
-
-  tags = {
-    Owner = "john-doe"
-  }
-
+  public_subnet_cidrs = var.public_subnet_cidrs
+  
+  public_subnet_tags = local.cluster_id_tag
+          
 }

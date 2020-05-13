@@ -17,14 +17,14 @@ resource "aws_instance" "this" {
   subnet_id = var.public_subnet_id
 
   monitoring = true
-
-  security_groups = var.security_group_ids
-
-  associate_public_ip_address = true
+  
+  #associate_public_ip_address = true
   
   key_name = module.keys.key_name
   
   tags = local.merged_tags
+
+  vpc_security_group_ids = var.security_group_ids
   
 }
 

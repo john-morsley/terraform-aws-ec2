@@ -15,9 +15,5 @@ module "keys" {
   name = var.name
 
   folder = "${var.name}-keys"
-
-  //  tags = {
-  //    Terraform = "true"
-  //  }
-
+  
 }

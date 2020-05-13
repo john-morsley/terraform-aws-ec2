@@ -14,16 +14,12 @@ module "docker-ec2" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
-  vpc_id = module.docker-vpc.vpc_id
+  vpc_id = module.docker-vpc.id
 
   iam_instance_profile_name = module.iam.instance_profile_name
 
   public_subnet_id = module.docker-vpc.public_subnet_id
 
   security_group_ids = [ module.allow-ssh.id ]
-
-  //  tags = {
-  //    "Terraform" = "true"
-  //  }
-
+  
 }

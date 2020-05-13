@@ -18,6 +18,10 @@
     },
     {
       "Effect": "Allow",
+      "Action": ["ec2:*"],
+      "Resource": ["*"]
+    },    {
+      "Effect": "Allow",
       "Action": ["elasticloadbalancing:*"],
       "Resource": ["*"]
     }

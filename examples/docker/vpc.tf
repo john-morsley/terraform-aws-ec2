@@ -12,8 +12,8 @@ module "docker-vpc" {
 
   name = "docker-ec2-example"
 
-  cidr_block = var.cidr_block
+  vpc_cidr = var.vpc_cidr
 
-  public_subnets = var.public_subnet_cidr
+  public_subnet_cidrs = var.public_subnet_cidr
   
 }

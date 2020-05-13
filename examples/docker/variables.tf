@@ -22,17 +22,17 @@ variable "instance_type" {
   default = "t2.medium" # Minimum for Docker
 }
 
-variable "cidr_block" {
+variable "vpc_cidr" {
   type = string
   default = "10.0.0.0/16" # 65,531 (65,536 possible - 5 reserved by AWS) 
 }
 
 variable "public_subnet_cidr" {
   type = list(string)
-  default = ["10.0.0.0/24"] # 251 (256 possible - 5 reserved by AWS) 
+  default = ["10.0.1.0/24"] # 251 (256 possible - 5 reserved by AWS) 
 }
 
-variable "all_cidr_block" {
-  type = string
-  default = "0.0.0.0/0" # All possible IP address range 
-}
+//variable "private_subnet_cidr" {
+//  type = list(string)
+//  default = ["10.0.2.0/24"] # 251 (256 possible - 5 reserved by AWS) 
+//}

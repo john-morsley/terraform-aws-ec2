@@ -10,17 +10,17 @@
 resource "null_resource" "install-docker" {
 
   depends_on = [
-    module.vpc,
+    module.docker-vpc,
     module.iam,
-    module.ec2, 
+    module.docker-ec2, 
     module.allow-ssh
   ]
 
   connection {
     type        = "ssh"
-    host        = module.ec2.public_ip
+    host        = module.docker-ec2.public_ip
     user        = "ubuntu"
-    private_key = base64decode(module.ec2.encoded_private_key)
+    private_key = base64decode(module.docker-ec2.encoded_private_key)
   }
 
   # https://www.terraform.io/docs/provisioners/file.html
@@ -46,9 +46,9 @@ resource "null_resource" "is-docker-ready" {
 
   connection {
     type        = "ssh"
-    host        = module.ec2.public_ip
+    host        = module.docker-ec2.public_ip
     user        = "ubuntu"
-    private_key = base64decode(module.ec2.encoded_private_key)
+    private_key = base64decode(module.docker-ec2.encoded_private_key)
   }
 
   # https://www.terraform.io/docs/provisioners/file.html

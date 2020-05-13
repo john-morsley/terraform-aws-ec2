@@ -9,12 +9,10 @@ locals {
 
   cluster_id = "kubernetes.io/cluster/${var.cluster_name}"
 
-  name = "${var.name}-private-subnet"
+  cluster_id_tag = {
+    "${local.cluster_id}" = "owned"
+  }
   
-//  merged_tags = merge(
-//    { Name = local.name },
-//    { "${cluster_id}" = "owned" },
-//    var.tags
-//  )
-  
+  all_cidr_block = "0.0.0.0/0" 
+
 }
