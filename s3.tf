@@ -7,24 +7,34 @@
 
 # SIMPLE STORAGE SERVICE
 
-resource "aws_s3_bucket_object" "public-key" {
+module "public-key" {
 
-  depends_on = [var.mock_depends_on]
+  source = "./../terraform-aws-s3-object"
+  #source = "john-morsley/terraform-aws-s3-object"
 
-  bucket     = var.bucket_name
-  key        = "/${var.name}.pub"
-  content    = module.keys.public_key
-  content_type = "text/*"
+  bucket_name = var.bucket_name
 
+  key     = "/${var.name}.pub"
+  content = module.keys.public_key
+
+  mock_depends_on = [
+    var.mock_depends_on
+  ]
+  
 }
 
-resource "aws_s3_bucket_object" "private-key" {
+module "private-key" {
 
-  depends_on = [var.mock_depends_on]
+  source = "./../terraform-aws-s3-object"
+  #source = "john-morsley/terraform-aws-s3-object"
 
-  bucket     = var.bucket_name
-  key        = "/${var.name}.pem"
-  content    = module.keys.private_key
-  content_type = "text/*"
+  bucket_name = var.bucket_name
+
+  key     = "/${var.name}.pem"
+  content = module.keys.private_key
+
+  mock_depends_on = [
+    var.mock_depends_on
+  ]
 
 }

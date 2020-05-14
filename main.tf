@@ -26,6 +26,10 @@ resource "aws_instance" "this" {
 
   vpc_security_group_ids = var.security_group_ids
   
+  depends_on = [
+    var.mock_depends_on
+  ]
+  
 }
 
 # https://www.terraform.io/docs/providers/null/resource.html
@@ -37,7 +41,6 @@ resource "null_resource" "is-ec2-ready" {
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
-    #command = "chmod +x ${path.module}/is_ec2_ready.sh && bash ${path.module}/is_ec2_ready.sh ${local.name}"
     command = "bash ${path.module}/is_ec2_ready.sh ${local.name}"
   }
 
