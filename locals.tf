@@ -6,7 +6,7 @@
 #     |______\___/ \___\__,_|_|___/
 
 locals {
-  
+
   name = "${var.name}-ec2"
 
   merged_tags = merge(

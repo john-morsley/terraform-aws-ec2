@@ -16,10 +16,10 @@
 module "allow-ssh" {
 
   source = "./../../../terraform-aws-security-group"
-  #source = "john-morsley/terraform-aws-vpc"
+  #source = "john-morsley/terraform-aws-security-group"
 
   name = "docker"
-  description = "To allow SSH to set up Docker."
+  description = "To allow SSH"
 
   vpc_id = module.docker-vpc.id
   

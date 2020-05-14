@@ -17,6 +17,11 @@ variable "region" {
   default = "eu-west-2" # London
 }
 
+variable "name" {
+  type = string
+  default = "docker-ec2-example"
+}
+
 variable "instance_type" {
   type = string
   default = "t2.medium" # Minimum for Docker
@@ -32,7 +37,7 @@ variable "public_subnet_cidr" {
   default = ["10.0.1.0/24"] # 251 (256 possible - 5 reserved by AWS) 
 }
 
-//variable "private_subnet_cidr" {
-//  type = list(string)
-//  default = ["10.0.2.0/24"] # 251 (256 possible - 5 reserved by AWS) 
-//}
+variable "private_subnet_cidr" {
+  type = list(string)
+  default = ["10.0.2.0/24"] # 251 (256 possible - 5 reserved by AWS) 
+}

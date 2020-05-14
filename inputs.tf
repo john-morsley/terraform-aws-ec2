@@ -42,3 +42,12 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "bucket_name" {
+  type = string
+}
+
+variable "mock_depends_on" {
+  type    = any
+  default = null
+}

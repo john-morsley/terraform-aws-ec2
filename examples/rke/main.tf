@@ -9,7 +9,7 @@ module "rke-ec2" {
 
   source = "./../../../terraform-aws-ec2"
 
-  name = "rke"
+  name = local.name
 
   ami = data.aws_ami.ubuntu.id
 
@@ -21,4 +21,10 @@ module "rke-ec2" {
 
   tags = local.cluster_id_tag
 
+  bucket_name = local.bucket_name
+  
+  mock_depends_on = [
+    module.s3_bucket.id
+  ]
+  
 }

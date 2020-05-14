@@ -1,4 +1,4 @@
-#       ____        _               _       
+﻿#       ____        _               _       
 #      / __ \      | |             | |      
 #     | |  | |_   _| |_ _ __  _   _| |_ ___
 #     | |  | | | | | __| '_ \| | | | __/ __|
@@ -8,13 +8,13 @@
 #                      |_|
 
 output "vpc_id" {
-  value = module.simple-vpc.id
+  value = module.rke-vpc.id
 }
 
 output "ec2_public_dns" {
-  value = module.simple-ec2.public_dns
+  value = module.rke-ec2.public_dns
 }
 
 output "ssh_command" {
-  value = module.simple-ec2.ssh_command
+  value = module.rke-ec2.ssh_command
 }

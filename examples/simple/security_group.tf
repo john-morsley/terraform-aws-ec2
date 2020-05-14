@@ -21,7 +21,7 @@ module "allow-ssh" {
   name = "allow-ssh"
   description = "To allow SSH."
 
-  vpc_id = module.rke-vpc.id
+  vpc_id = module.simple-vpc.id
 
   ingress = [{
     description = "Allow SSH"
@@ -39,6 +39,4 @@ module "allow-ssh" {
     cidr_blocks = [ local.all_cidr_block ]
   }]
 
-  tags = local.cluster_id_tag
-  
 }

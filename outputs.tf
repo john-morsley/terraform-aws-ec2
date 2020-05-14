@@ -44,5 +44,5 @@ output "encoded_private_key" {
 }
 
 output "ssh_command" {
-  value = "chmod 400 ${var.name}-keys/${var.name}* && ssh -i \"${var.name}-keys/${var.name}.pem\" ubuntu@${aws_instance.this.public_dns}"
+  value = "chmod 400 keys/${var.name}* && ssh -i \"keys/${var.name}.pem\" ubuntu@${aws_instance.this.public_dns}"
 }

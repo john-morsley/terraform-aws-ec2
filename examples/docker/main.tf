@@ -8,8 +8,9 @@
 module "docker-ec2" {
 
   source = "./../../../terraform-aws-ec2"
-
-  name = "docker"
+  #source = "john-morsley/terraform-aws-ec2"
+  
+  name = local.name
 
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
@@ -21,5 +22,11 @@ module "docker-ec2" {
   public_subnet_id = module.docker-vpc.public_subnet_id
 
   security_group_ids = [ module.allow-ssh.id ]
+  
+  bucket_name = local.bucket_name
+
+  mock_depends_on = [
+    module.s3_bucket.id
+  ]
   
 }

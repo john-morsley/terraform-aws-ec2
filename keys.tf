@@ -14,6 +14,7 @@ module "keys" {
 
   name = var.name
 
-  folder = "${var.name}-keys"
+  folder = "keys"
   
 }
+
