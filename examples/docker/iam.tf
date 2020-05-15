@@ -10,8 +10,7 @@
 
 module "iam" {
 
-  source = "./../../../terraform-aws-iam"
-  #source = "john-morsley/terraform-aws-iam"
+  source = "john-morsley/iam/aws"
 
   name = "ec2"
 
