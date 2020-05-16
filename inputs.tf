@@ -47,6 +47,11 @@ variable "bucket_name" {
   type = string
 }
 
+variable "availability_zone" {
+  description = "The Availability Zone for the instance"
+  type        = string
+}
+
 variable "mock_depends_on" {
   type    = any
   default = null

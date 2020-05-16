@@ -7,7 +7,8 @@
 
 module "rke-ec2" {
 
-  source = "john-morsley/ec2/aws"
+  source = "./../../../terraform-aws-ec2"
+  //source = "john-morsley/ec2/aws"
 
   name = local.name
 
@@ -19,6 +20,8 @@ module "rke-ec2" {
 
   security_group_ids = [ module.allow-ssh.id ]
 
+  availability_zone = data.aws_availability_zones.available.names[0]
+  
   tags = local.cluster_id_tag
 
   bucket_name = local.bucket_name

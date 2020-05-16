@@ -7,7 +7,8 @@
 
 module "simple-ec2" {
 
-  source = "john-morsley/ec2/aws"
+  source = "./../../../terraform-aws-ec2"
+  //source = "john-morsley/ec2/aws"
 
   name = local.name
 
@@ -21,6 +22,8 @@ module "simple-ec2" {
   public_subnet_id = module.simple-vpc.public_subnet_id
 
   security_group_ids = [ module.allow-ssh.id ]
+
+  availability_zone = data.aws_availability_zones.available.names[0]
   
   bucket_name = local.bucket_name
 
