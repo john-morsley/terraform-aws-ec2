@@ -16,7 +16,7 @@ module "rke-ec2" {
 
   vpc_id = module.rke-vpc.id
 
-  public_subnet_id = module.rke-vpc.public_subnet_id
+  public_subnet_id = module.rke-vpc.public_subnet_ids[0]
 
   security_group_ids = [ module.allow-ssh.id ]
 
@@ -27,7 +27,7 @@ module "rke-ec2" {
   bucket_name = local.bucket_name
   
   mock_depends_on = [
-    module.s3_bucket.id
+    module.s3_bucket
   ]
   
 }

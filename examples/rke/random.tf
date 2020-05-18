@@ -14,5 +14,5 @@ resource "random_pet" "cluster-name" {
 }
 
 resource "random_pet" "bucket" {
-  length = 5
+  length = 3
 }

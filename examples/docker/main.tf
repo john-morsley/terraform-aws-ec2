@@ -19,7 +19,7 @@ module "docker-ec2" {
 
   iam_instance_profile_name = module.iam.instance_profile_name
 
-  public_subnet_id = module.docker-vpc.public_subnet_id
+  public_subnet_id = module.docker-vpc.public_subnet_ids[0]
 
   security_group_ids = [ module.allow-ssh.id ]
 
@@ -28,7 +28,7 @@ module "docker-ec2" {
   bucket_name = local.bucket_name
 
   mock_depends_on = [
-    module.s3_bucket.id
+    module.s3_bucket
   ]
   
 }

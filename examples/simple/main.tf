@@ -19,7 +19,7 @@ module "simple-ec2" {
 
   #iam_instance_profile_name = module.iam.instance_profile_name
 
-  public_subnet_id = module.simple-vpc.public_subnet_id
+  public_subnet_id = module.simple-vpc.public_subnet_ids[0]
 
   security_group_ids = [ module.allow-ssh.id ]
 
