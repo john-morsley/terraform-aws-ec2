@@ -52,6 +52,12 @@ variable "availability_zone" {
   type        = string
 }
 
+variable "docker" {
+  description = "Do we need Docker installed?"
+  type        = bool
+  default     = false
+}
+
 variable "mock_depends_on" {
   type    = any
   default = null

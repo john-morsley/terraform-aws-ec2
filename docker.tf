@@ -9,24 +9,23 @@
 
 resource "null_resource" "install-docker" {
 
+  count = var.docker ? 1 : 0
+  
   depends_on = [
-    module.docker-vpc,
-    module.iam,
-    module.docker-ec2, 
-    module.allow-ssh
+    aws_instance.this
   ]
 
   connection {
     type        = "ssh"
-    host        = module.docker-ec2.public_ip
+    host = aws_instance.this.public_ip
     user        = "ubuntu"
-    private_key = base64decode(module.docker-ec2.encoded_private_key)
+    private_key =  module.keys.private_key
   }
 
   # https://www.terraform.io/docs/provisioners/file.html
 
   provisioner "file" {
-    source      = "${path.module}/install_docker.sh"
+    source      = "${path.module}/scripts/install_docker.sh"
     destination = "install_docker.sh"
   }
 
@@ -42,19 +41,21 @@ resource "null_resource" "install-docker" {
 
 resource "null_resource" "is-docker-ready" {
 
+  count = var.docker ? 1 : 0
+  
   depends_on = [null_resource.install-docker]
 
   connection {
     type        = "ssh"
-    host        = module.docker-ec2.public_ip
+    host = aws_instance.this.public_ip
     user        = "ubuntu"
-    private_key = base64decode(module.docker-ec2.encoded_private_key)
+    private_key =  module.keys.private_key
   }
 
   # https://www.terraform.io/docs/provisioners/file.html
 
   provisioner "file" {
-    source      = "${path.module}/is_docker_ready.sh"
+    source      = "${path.module}/scripts/is_docker_ready.sh"
     destination = "is_docker_ready.sh"
   }
 
