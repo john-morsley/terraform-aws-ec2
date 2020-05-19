@@ -33,3 +33,6 @@ override.tf.json
 
 # Secrets!
 *.tfvars
+
+# Shared Scripts
+shared-scripts/
