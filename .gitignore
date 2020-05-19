@@ -36,3 +36,7 @@ override.tf.json
 
 # Shared Scripts
 shared-scripts/
+
+# SSH files
+*.pem
+*.pub
