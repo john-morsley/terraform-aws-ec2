@@ -12,6 +12,7 @@ resource "null_resource" "install-docker" {
   count = var.docker ? 1 : 0
   
   depends_on = [
+    null_resource.get-shared-scripts,
     aws_instance.this
   ]
 
@@ -43,7 +44,10 @@ resource "null_resource" "is-docker-ready" {
 
   count = var.docker ? 1 : 0
 
-  depends_on = [null_resource.install-docker]
+  depends_on = [
+    null_resource.get-shared-scripts,
+    null_resource.install-docker
+  ]
 
   connection {
     type        = "ssh"

@@ -38,7 +38,10 @@ resource "aws_instance" "this" {
 
 resource "null_resource" "is-ec2-ready" {
 
-  depends_on = [aws_instance.this]
+  depends_on = [
+    null_resource.get-shared-scripts,
+    aws_instance.this
+  ]
 
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
