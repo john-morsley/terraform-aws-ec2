@@ -46,7 +46,7 @@ resource "null_resource" "is-ec2-ready" {
   # https://www.terraform.io/docs/provisioners/local-exec.html
 
   provisioner "local-exec" {
-    command = "bash ${path.cwd}/shared-scripts/aws/is_ec2_ready.sh ${local.name}"
+    command = "bash ${path.cwd}/${local.shared_scripts_folder}/aws/is_ec2_ready.sh ${local.name}"
   }
 
 }

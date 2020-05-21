@@ -2,10 +2,9 @@
 
 echo 'Cloning Shared Scripts repository...'
 
-if [[ -d "shared-scripts" ]]; then
-  rm --recursive --force shared-scripts
-fi  
+echo "SHARED_SCRIPTS_FOLDER: ${SHARED_SCRIPTS_FOLDER}"
 
-git clone https://github.com/john-morsley/shared-scripts.git
-
+git clone https://github.com/john-morsley/shared-scripts.git \
+  ${SHARED_SCRIPTS_FOLDER}  
+  
 exit 0

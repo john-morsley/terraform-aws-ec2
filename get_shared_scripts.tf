@@ -6,6 +6,9 @@ resource "null_resource" "get-shared-scripts" {
 
   provisioner "local-exec" {
     command = "bash ${path.module}/scripts/get_shared_scripts.sh"
+    environment = {
+      SHARED_SCRIPTS_FOLDER=local.shared_scripts_folder
+    }
   }
 
 }

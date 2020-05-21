@@ -26,7 +26,7 @@ resource "null_resource" "install-docker" {
   # https://www.terraform.io/docs/provisioners/file.html
 
   provisioner "file" {
-    source      = "${path.cwd}/shared-scripts/docker/install_docker.sh"
+    source      = "${path.cwd}/${local.shared_scripts_folder}/docker/install_docker.sh"
     destination = "install_docker.sh"
   }
 
@@ -59,7 +59,7 @@ resource "null_resource" "is-docker-ready" {
   # https://www.terraform.io/docs/provisioners/file.html
 
   provisioner "file" {
-    source      = "${path.cwd}/shared-scripts/docker/is_docker_ready.sh"
+    source      = "${path.cwd}/${local.shared_scripts_folder}/docker/is_docker_ready.sh"
     destination = "is_docker_ready.sh"
   }
 
