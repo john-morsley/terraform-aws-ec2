@@ -14,6 +14,6 @@ locals {
     var.tags
   )
 
-  shared_scripts_folder = "shared-scripts-${random_pet.shared-scripts}"
+  shared_scripts_folder = "shared-scripts-${random_pet.shared-scripts.id}"
   
 }
