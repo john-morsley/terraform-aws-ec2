@@ -18,7 +18,7 @@ resource "aws_instance" "this" {
 
   monitoring = true
   
-  #associate_public_ip_address = true
+  associate_public_ip_address = true
   
   key_name = module.keys.key_name
   
@@ -39,6 +39,8 @@ resource "aws_instance" "this" {
 resource "null_resource" "is-ec2-ready" {
 
   depends_on = [
+    null_resource.install-docker,
+    null_resource.is-docker-ready,
     null_resource.get-shared-scripts,
     aws_instance.this
   ]
