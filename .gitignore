@@ -40,3 +40,6 @@ shared-scripts-*/
 # SSH files
 *.pem
 *.pub
+
+# Keys
+**/keys/

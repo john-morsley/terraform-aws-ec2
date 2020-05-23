@@ -1,4 +1,4 @@
-﻿# https://www.terraform.io/docs/providers/null/resource.html
+# https://www.terraform.io/docs/providers/null/resource.html
 
 resource "null_resource" "get-shared-scripts" {
 

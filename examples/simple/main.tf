@@ -28,7 +28,7 @@ module "simple-ec2" {
   bucket_name = local.bucket_name
 
   mock_depends_on = [
-    module.s3_bucket.bucket_name
+    module.s3_bucket
   ]
   
 }
