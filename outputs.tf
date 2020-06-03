@@ -11,8 +11,8 @@ output "id" {
   value = aws_instance.this.id
 }
 
-output "name" {
-  value = local.name
+output "key_name" {
+  value = local.key_name
 }
 
 output "key_pair" {

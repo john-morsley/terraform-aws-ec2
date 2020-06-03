@@ -11,7 +11,7 @@ module "keys" {
 
   source = "john-morsley/keys/aws"
 
-  name = var.name
+  name = local.key_name
 
   folder = "keys"
   

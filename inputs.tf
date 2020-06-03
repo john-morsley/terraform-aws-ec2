@@ -47,6 +47,11 @@ variable "bucket_name" {
   type = string
 }
 
+variable "key_prefix" {
+  type    = string
+  default = ""
+}
+
 variable "availability_zone" {
   description = "The Availability Zone for the instance"
   type        = string

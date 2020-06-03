@@ -7,6 +7,10 @@
 
 locals {
 
+  separator = "${var.key_prefix == "" ? "" : "-"}"
+
+  key_name = "${var.key_prefix}${local.separator}${local.name}"
+  
   name = "${var.name}-ec2"
 
   merged_tags = merge(

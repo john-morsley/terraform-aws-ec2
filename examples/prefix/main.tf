@@ -25,6 +25,8 @@ module "simple-ec2" {
   
   bucket_name = local.bucket_name
 
+  key_prefix = "aardvark"
+  
   mock_depends_on = [
     module.s3_bucket
   ]
