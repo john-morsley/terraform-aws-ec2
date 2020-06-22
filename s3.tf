@@ -9,7 +9,8 @@
 
 module "public-key" {
 
-  source = "john-morsley/s3-object/aws"
+  source = "./../terraform-aws-s3-object"
+  #source = "john-morsley/s3-object/aws"
 
   bucket_name = var.bucket_name
 
@@ -19,12 +20,13 @@ module "public-key" {
   mock_depends_on = [
     var.mock_depends_on
   ]
-  
+
 }
 
 module "private-key" {
 
-  source = "john-morsley/s3-object/aws"
+  source = "./../terraform-aws-s3-object"
+  #source = "john-morsley/s3-object/aws"
 
   bucket_name = var.bucket_name
 

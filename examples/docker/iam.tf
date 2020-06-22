@@ -14,8 +14,8 @@ module "iam" {
 
   name = "ec2"
 
-  assume_role_policy = file("${path.module}/role.json")
+  assume_role_policy = file("${path.module}/iam/role.json")
 
-  role_policy = file("${path.module}/policy.json")
+  role_policy = file("${path.module}/iam/policy.json")
 
 }

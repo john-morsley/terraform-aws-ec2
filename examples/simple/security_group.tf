@@ -15,9 +15,10 @@
 
 module "allow-ssh" {
 
-  source = "john-morsley/security-group/aws"
+  source = "./../../../terraform-aws-security-group"
+  #source = "john-morsley/security-group/aws"
 
-  name = "allow-ssh"
+  name        = "allow-ssh"
   description = "To allow SSH."
 
   vpc_id = module.simple-vpc.id
@@ -27,7 +28,7 @@ module "allow-ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [ local.all_cidr_block ]
+    cidr_blocks = [local.all_cidr_block]
   }]
 
   egress = [{
@@ -35,7 +36,7 @@ module "allow-ssh" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [ local.all_cidr_block ]
+    cidr_blocks = [local.all_cidr_block]
   }]
 
 }

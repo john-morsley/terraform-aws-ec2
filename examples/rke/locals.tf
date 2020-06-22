@@ -10,7 +10,7 @@ locals {
   all_cidr_block = "0.0.0.0/0"
 
   bucket_name = "${var.name}-${random_pet.bucket.id}"
-  
+
   cluster_id = "kubernetes.io/cluster/${random_pet.cluster-name.id}"
 
   cluster_id_tag = {
@@ -18,5 +18,5 @@ locals {
   }
 
   name = "${var.name}-${random_pet.name.id}"
-  
+
 }

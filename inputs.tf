@@ -20,12 +20,12 @@ variable "ami" {
 }
 
 variable "instance_type" {
-  type = string
+  type    = string
   default = "t2.nano"
 }
 
 variable "iam_instance_profile_name" {
-  type = string
+  type    = string
   default = null
 }
 

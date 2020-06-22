@@ -15,6 +15,6 @@ module "docker-vpc" {
 
   public_subnet_cidrs = var.public_subnet_cidr
 
-  availability_zones = [ data.aws_availability_zones.available.names[0] ]
-  
+  availability_zones = [data.aws_availability_zones.available.names[0]]
+
 }
