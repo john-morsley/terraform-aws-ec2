@@ -17,9 +17,9 @@ module "public-key" {
   key     = "/${var.name}.pub"
   content = module.keys.public_key
 
-  mock_depends_on = [
-    var.mock_depends_on
-  ]
+  #mock_depends_on = [
+  #  var.mock_depends_on
+  #]
 
 }
 
@@ -33,8 +33,8 @@ module "private-key" {
   key     = "/${var.name}.pem"
   content = module.keys.private_key
 
-  mock_depends_on = [
-    var.mock_depends_on
-  ]
+  #mock_depends_on = [
+  #  var.mock_depends_on
+  #]
 
 }

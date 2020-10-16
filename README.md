@@ -19,3 +19,7 @@ module "ec2" {
 
 }
 ```
+
+Prerequisites:
+
+- jq

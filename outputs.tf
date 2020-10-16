@@ -7,12 +7,24 @@
 #                      | |                  
 #                      |_|
 
+output "name" {
+  value = local.name
+}
+
 output "id" {
   value = aws_instance.this.id
 }
 
+output "shared_scripts_folder" {
+  value = local.shared_scripts_folder
+}
+
 output "key_name" {
   value = local.key_name
+}
+
+output "merged_tags" {
+  value = local.merged_tags
 }
 
 output "key_pair" {

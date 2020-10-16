@@ -28,9 +28,9 @@ resource "aws_instance" "this" {
 
   availability_zone = var.availability_zone
 
-  depends_on = [
-    var.mock_depends_on
-  ]
+  #depends_on = [
+  #  var.mock_depends_on
+  #]
 
 }
 
