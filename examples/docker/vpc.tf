@@ -7,7 +7,8 @@
 
 module "docker-vpc" {
 
-  source = "john-morsley/vpc/aws"
+  source = "./../../../terraform-aws-vpc"
+  #source = "john-morsley/vpc/aws"
 
   name = local.name
 
