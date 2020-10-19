@@ -15,6 +15,6 @@ output "ec2_public_dns" {
   value = module.docker-ec2.public_dns
 }
 
-output "ssh_command" {
+output "ec2_ssh_command" {
   value = module.docker-ec2.ssh_command
 }

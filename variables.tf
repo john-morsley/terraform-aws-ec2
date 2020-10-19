@@ -44,10 +44,6 @@ variable "tags" {
   default     = {}
 }
 
-//variable "bucket_name" {
-//  type = string
-//}
-
 variable "key_prefix" {
   type    = string
   default = ""

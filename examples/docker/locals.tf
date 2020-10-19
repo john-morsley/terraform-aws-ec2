@@ -11,6 +11,4 @@ locals {
 
   name = "${var.name}-${random_pet.name.id}"
 
-  bucket_name = "${var.name}-${random_pet.bucket.id}"
-
 }
