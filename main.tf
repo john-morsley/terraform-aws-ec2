@@ -24,7 +24,11 @@ resource "aws_instance" "this" {
 
   tags = local.merged_tags
 
-  vpc_security_group_ids = var.security_group_ids
+  //vpc_security_group_ids = var.security_group_ids
+  vpc_security_group_ids = [
+    module.simple-security-group-rule-ingress.id,
+    module.simple-security-group-rule-egress.id
+  ]
 
   availability_zone = var.availability_zone
   
