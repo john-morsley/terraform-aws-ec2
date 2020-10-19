@@ -17,66 +17,36 @@
 #               | | \ \ |_| | |  __/
 #               |_|  \_\__,_|_|\___|
 
-module "simple-security-group-rule-ingress" {
-
-  source = "./../../../terraform-aws-security-group-rule"
-  #source = "john-morsley/security-group-rule/aws"
-
-  description = "Ingress for SSH."
-
-  security_group_id = module.simple-ec2-sg.id
-
-  type      = "ingress"
-  from_port = 22
-  to_port   = 22
-  protocol  = "tcp"
-  cidrs     = ["0.0.0.0/0"]
-
-}
-
-module "simple-security-group-rule-egress" {
-
-  source = "./../../../terraform-aws-security-group-rule"
-  #source = "john-morsley/security-group-rule/aws"
-
-  description = "Egress for SSH."
-
-  security_group_id = module.simple-ec2-sg.id
-
-  type      = "egress"
-  from_port = 0
-  to_port   = 0
-  protocol  = "-1"
-  cidrs     = ["0.0.0.0/0"]
-
-}
-
-
-
-//module "allow-ssh" {
+//module "simple-security-group-rule-ingress" {
 //
 //  source = "./../../../terraform-aws-security-group-rule"
-//  #source = "john-morsley/security-group/aws"
+//  #source = "john-morsley/security-group-rule/aws"
 //
-//  name        = "allow-ssh"
-//  description = "To allow SSH."
+//  description = "Ingress for SSH."
 //
-//  vpc_id = module.simple-vpc.id
+//  security_group_id = module.simple-ec2-sg.id
 //
-//  ingress = [{
-//    description = "Allow SSH"
-//    from_port   = 22
-//    to_port     = 22
-//    protocol    = "tcp"
-//    cidr_blocks = [local.all_cidr_block]
-//  }]
+//  type      = "ingress"
+//  from_port = 22
+//  to_port   = 22
+//  protocol  = "tcp"
+//  cidrs     = ["0.0.0.0/0"]
 //
-//  egress = [{
-//    description = "Allow All"
-//    from_port   = 0
-//    to_port     = 0
-//    protocol    = "-1"
-//    cidr_blocks = [local.all_cidr_block]
-//  }]
+//}
+//
+//module "simple-security-group-rule-egress" {
+//
+//  source = "./../../../terraform-aws-security-group-rule"
+//  #source = "john-morsley/security-group-rule/aws"
+//
+//  description = "Egress for SSH."
+//
+//  security_group_id = module.simple-ec2-sg.id
+//
+//  type      = "egress"
+//  from_port = 0
+//  to_port   = 0
+//  protocol  = "-1"
+//  cidrs     = ["0.0.0.0/0"]
 //
 //}

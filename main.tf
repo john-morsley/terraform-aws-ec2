@@ -27,11 +27,7 @@ resource "aws_instance" "this" {
   vpc_security_group_ids = var.security_group_ids
 
   availability_zone = var.availability_zone
-
-  #depends_on = [
-  #  var.mock_depends_on
-  #]
-
+  
 }
 
 # https://www.terraform.io/docs/providers/null/resource.html

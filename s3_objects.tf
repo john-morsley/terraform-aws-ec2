@@ -12,14 +12,14 @@ module "public-key" {
   source = "./../terraform-aws-s3-object"
   #source = "john-morsley/s3-object/aws"
 
-  bucket_name = var.bucket_name
+  bucket_name = local.bucket_name
 
   key     = "/${var.name}.pub"
   content = module.keys.public_key
 
-  #mock_depends_on = [
-  #  var.mock_depends_on
-  #]
+  depends_on = [
+    module.s3_bucket
+  ]
 
 }
 
@@ -28,13 +28,13 @@ module "private-key" {
   source = "./../terraform-aws-s3-object"
   #source = "john-morsley/s3-object/aws"
 
-  bucket_name = var.bucket_name
+  bucket_name = local.bucket_name
 
   key     = "/${var.name}.pem"
   content = module.keys.private_key
 
-  #mock_depends_on = [
-  #  var.mock_depends_on
-  #]
+  depends_on = [
+    module.s3_bucket
+  ]
 
 }
