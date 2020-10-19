@@ -21,5 +21,5 @@ module "rke-ec2" {
   availability_zone = data.aws_availability_zones.available.names[0]
 
   tags = local.cluster_id_tag
-  
+
 }
