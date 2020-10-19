@@ -33,7 +33,7 @@ variable "public_subnet_id" {
   type = string
 }
 
-variable "security_group_ids" {
+variable "additional_security_group_ids" {
   type = list(string)
   default = []
 }

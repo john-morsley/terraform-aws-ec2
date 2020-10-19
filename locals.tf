@@ -18,6 +18,11 @@ locals {
     var.tags
   )
 
+  merged_security_groups_ids = merge(
+    module.ssh-ec2-sg.id,
+    var.additional_security_group_ids
+  )
+
   shared_scripts_folder = "shared-scripts-${random_pet.shared-scripts.id}"
 
 }

@@ -19,19 +19,6 @@ module "simple-ec2" {
 
   public_subnet_id = module.simple-vpc.public_subnet_ids[0]
 
-  //security_group_ids = [module.simple-ec2-sg.id]
-  //additional_security_group_ids = []
-
   availability_zone = data.aws_availability_zones.available.names[0]
-
-  //bucket_name = local.bucket_name
-
-//  depends_on = [
-//    module.s3_bucket
-//  ]
-
-  #mock_depends_on = [
-  #  module.s3_bucket
-  #]
 
 }

@@ -23,12 +23,13 @@ resource "aws_instance" "this" {
   key_name = module.keys.key_name
 
   tags = local.merged_tags
+  
+  #vpc_security_group_ids = [
+  #  module.ssh-ec2-sg.id
+  #]
 
-  //vpc_security_group_ids = var.security_group_ids
-  vpc_security_group_ids = [
-    module.ssh-ec2-sg.id
-  ]
-
+  vpc_security_group_ids = local.merged_security_groups_ids
+  
   availability_zone = var.availability_zone
   
   depends_on = [
