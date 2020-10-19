@@ -17,14 +17,14 @@
 #               | | \ \ |_| | |  __/
 #               |_|  \_\__,_|_|\___|
 
-module "simple-security-group-rule-ingress" {
+module "ssh-ingress-sgr" {
 
   source = "./../terraform-aws-security-group-rule"
   #source = "john-morsley/security-group-rule/aws"
 
   description = "Ingress for SSH."
 
-  security_group_id = module.simple-ec2-sg.id
+  security_group_id = module.ssh-ec2-sg.id
 
   type      = "ingress"
   from_port = 22
@@ -34,14 +34,14 @@ module "simple-security-group-rule-ingress" {
 
 }
 
-module "simple-security-group-rule-egress" {
+module "ssh-egress-sgr" {
 
   source = "./../terraform-aws-security-group-rule"
   #source = "john-morsley/security-group-rule/aws"
 
   description = "Egress for SSH."
 
-  security_group_id = module.simple-ec2-sg.id
+  security_group_id = module.ssh-ec2-sg.id
 
   type      = "egress"
   from_port = 0
@@ -50,33 +50,3 @@ module "simple-security-group-rule-egress" {
   cidrs     = ["0.0.0.0/0"]
 
 }
-
-
-
-//module "allow-ssh" {
-//
-//  source = "./../../../terraform-aws-security-group-rule"
-//  #source = "john-morsley/security-group/aws"
-//
-//  name        = "allow-ssh"
-//  description = "To allow SSH."
-//
-//  vpc_id = module.simple-vpc.id
-//
-//  ingress = [{
-//    description = "Allow SSH"
-//    from_port   = 22
-//    to_port     = 22
-//    protocol    = "tcp"
-//    cidr_blocks = [local.all_cidr_block]
-//  }]
-//
-//  egress = [{
-//    description = "Allow All"
-//    from_port   = 0
-//    to_port     = 0
-//    protocol    = "-1"
-//    cidr_blocks = [local.all_cidr_block]
-//  }]
-//
-//}
