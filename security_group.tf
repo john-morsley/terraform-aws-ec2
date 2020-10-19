@@ -23,4 +23,6 @@ module "ssh-ec2-sg" {
 
   vpc_id = var.vpc_id
   
+  tags = local.merged_tags
+  
 }
