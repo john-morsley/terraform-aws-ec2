@@ -26,16 +26,13 @@ resource "aws_instance" "this" {
 
   //vpc_security_group_ids = var.security_group_ids
   vpc_security_group_ids = [
-    module.ssh-ingress-sgr.id,
-    module.ssh-egress-sgr.id
+    module.ssh-ec2-sg.id
   ]
 
   availability_zone = var.availability_zone
   
   depends_on = [
-    module.ssh-ec2-sg,
-    module.ssh-ingress-sgr,
-    module.ssh-egress-sgr
+    module.ssh-ec2-sg
   ]
   
 }
