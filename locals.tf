@@ -18,8 +18,8 @@ locals {
     var.tags
   )
 
-  merged_security_groups_ids = merge(
-    module.ssh-ec2-sg.id,
+  merged_security_groups_ids = concat(
+    tolist(module.ssh-ec2-sg.id),
     var.additional_security_group_ids
   )
 
