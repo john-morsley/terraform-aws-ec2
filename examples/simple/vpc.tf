@@ -13,7 +13,7 @@ module "simple-vpc" {
 
   name = local.name
 
-  vpc_cidr = "10.0.0.0/16" # 65,531 (65,536 possible - 5 reserved by AWS)
+  vpc_cidr = var.vpc_cidr
 
   public_subnet_cidrs = var.public_subnet_cidrs
 

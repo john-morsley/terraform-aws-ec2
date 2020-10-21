@@ -14,6 +14,10 @@ variable "instance_type" {
   default = "t2.micro"
 }
 
+variable "vpc_cidr" {
+  type = string
+}
+
 variable "public_subnet_cidrs" {
   type = list(string)
 }
