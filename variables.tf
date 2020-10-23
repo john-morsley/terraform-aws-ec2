@@ -39,7 +39,7 @@ variable "additional_security_group_ids" {
 }
 
 variable "tags" {
-  description = "Additional tags for all resources"
+  description = "Additional tags for all resources."
   type        = map(string)
   default     = {}
 }
@@ -50,7 +50,7 @@ variable "key_prefix" {
 }
 
 variable "availability_zone" {
-  description = "The Availability Zone for the instance"
+  description = "The Availability Zone for the instance."
   type        = string
 }
 
@@ -58,4 +58,10 @@ variable "docker" {
   description = "Do we need Docker installed?"
   type        = bool
   default     = false
+}
+
+variable "bucket_prefix" {
+  description = "An optional prefix for the bucket."
+  type        = string
+  default     = "morsley-uk"
 }

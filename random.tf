@@ -9,6 +9,6 @@ resource "random_pet" "shared-scripts" {
   length = 3
 }
 
-resource "random_pet" "bucket" {
-  length = 3
-}
+//resource "random_pet" "bucket" {
+//  length = 3
+//}

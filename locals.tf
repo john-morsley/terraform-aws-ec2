@@ -11,7 +11,8 @@ locals {
 
   name = "${var.name}-ec2"
 
-  bucket_name = "${var.name}-${random_pet.bucket.id}"
+  bucket_prefix = length(var.bucket_prefix) > 0 ? "${var.bucket_prefix}-" : ""
+  bucket_name = "${local.bucket_prefix}${var.name}-bucket"
   
   merged_tags = merge(
     { Name = local.name },
