@@ -18,7 +18,7 @@ module "ssh-ec2-sg" {
   source = "./../terraform-aws-security-group-module"
   #source = "john-morsley/security-group/aws"
 
-  name        = "allow-ssh"
+  name        = "allow-ssh-sg"
   description = "To allow SSH."
 
   vpc_id = var.vpc_id
