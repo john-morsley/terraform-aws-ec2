@@ -9,7 +9,7 @@
 
 module "public-key" {
 
-  source = "./../terraform-aws-s3-object"
+  source = "./../terraform-aws-s3-object-module"
   #source = "john-morsley/s3-object/aws"
 
   bucket_name = local.bucket_name
@@ -25,7 +25,7 @@ module "public-key" {
 
 module "private-key" {
 
-  source = "./../terraform-aws-s3-object"
+  source = "./../terraform-aws-s3-object-module"
   #source = "john-morsley/s3-object/aws"
 
   bucket_name = local.bucket_name

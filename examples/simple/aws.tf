@@ -6,4 +6,4 @@
 #     /_/    \_\     \/  \/     |_____/
 #   
 
-#provider "aws" {}
+provider "aws" {}

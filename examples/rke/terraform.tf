@@ -30,10 +30,10 @@ terraform {
 
   backend "s3" {
     bucket         = "morsley-io-terraform-backend-states"
-    key            = "terraform-modules/examples/aws-ec2-module/simple"
+    key            = "terraform-modules/examples/aws-ec2-module/rke"
     region         = "eu-west-2"
     dynamodb_table = "morsley-io-terraform-state-locks"
     encrypt        = true
   }
-  
+
 }

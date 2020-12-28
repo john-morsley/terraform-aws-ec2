@@ -7,7 +7,7 @@
 
 module "simple-ec2" {
 
-  source = "./../../../terraform-aws-ec2"
+  source = "./../../../terraform-aws-ec2-module"
   //source = "john-morsley/ec2/aws"
 
   name = local.name

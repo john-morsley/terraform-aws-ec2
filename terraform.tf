@@ -7,18 +7,24 @@
 
 terraform {
 
+  required_version = ">= 0.14"
+  
   required_providers {
+    # https://registry.terraform.io/providers/hashicorp/aws/latest
     aws = {
       source = "hashicorp/aws"
+      version = "~> 3.0"
     }
+    # https://registry.terraform.io/providers/hashicorp/null/latest
     null = {
       source = "hashicorp/null"
+      version = "~> 3.0"
     }
+    # https://registry.terraform.io/providers/hashicorp/random/latest
     random = {
       source = "hashicorp/random"
+      version = "~> 3.0"
     }
   }
-
-  required_version = ">= 0.13"
-
+  
 }

@@ -9,7 +9,7 @@
 
 module "keys" {
 
-  source = "./../terraform-aws-keys"
+  source = "./../terraform-aws-keys-module"
   #source = "john-morsley/keys/aws"
 
   name = local.key_name

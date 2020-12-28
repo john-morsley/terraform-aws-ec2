@@ -8,7 +8,7 @@
 
 module "simple-vpc" {
 
-  source = "./../../../terraform-aws-vpc"
+  source = "./../../../terraform-aws-vpc-module"
   //source = "john-morsley/vpc/aws"
 
   name = local.name

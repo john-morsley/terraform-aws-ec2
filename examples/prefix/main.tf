@@ -7,7 +7,7 @@
 
 module "simple-ec2" {
 
-  source = "./../../../terraform-aws-ec2"
+  source = "./../../../terraform-aws-ec2-module"
   //source = "john-morsley/ec2/aws"
 
   name = local.name
@@ -18,17 +18,9 @@ module "simple-ec2" {
   vpc_id = module.simple-vpc.id
 
   public_subnet_id = module.simple-vpc.public_subnet_ids[0]
-
-  security_group_ids = [module.allow-ssh.id]
-
+  
   availability_zone = data.aws_availability_zones.available.names[0]
 
-  bucket_name = local.bucket_name
-
   key_prefix = "aardvark"
-
-  mock_depends_on = [
-    module.s3_bucket
-  ]
-
+  
 }

@@ -7,7 +7,9 @@
 
 locals {
 
-  key_name = "${var.key_prefix}${var.key_prefix == "" ? "" : "-"}${local.name}"
+  key_prefix = "${var.key_prefix}${var.key_prefix == "" ? "" : "-"}"
+  
+  key_name = "${local.key_prefix}${local.name}"
 
   name = "${var.name}-ec2"
 
