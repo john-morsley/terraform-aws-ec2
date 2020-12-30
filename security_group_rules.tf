@@ -17,14 +17,14 @@
 #               | | \ \ |_| | |  __/
 #               |_|  \_\__,_|_|\___|
 
-module "ssh-ingress-sgr" {
+module "allow-ssh-ingress-sgr" {
 
   source = "./../terraform-aws-security-group-rule-module"
   #source = "john-morsley/security-group-rule/aws"
 
-  description = "Ingress for SSH."
+  description = "SSH Ingress."
 
-  security_group_id = module.ssh-ec2-sg.id
+  security_group_id = module.ec2-sg.id
 
   type      = "ingress"
   from_port = 22
@@ -34,14 +34,14 @@ module "ssh-ingress-sgr" {
 
 }
 
-module "ssh-egress-sgr" {
+module "allow-ssh-egress-sgr" {
 
   source = "./../terraform-aws-security-group-rule-module"
   #source = "john-morsley/security-group-rule/aws"
 
   description = "Egress for SSH."
 
-  security_group_id = module.ssh-ec2-sg.id
+  security_group_id = module.ec2-sg.id
 
   type      = "egress"
   from_port = 0
@@ -50,3 +50,56 @@ module "ssh-egress-sgr" {
   cidrs     = ["0.0.0.0/0"]
 
 }
+
+//module "allow-ssh-ingress-sgr" {
+//
+//  source = "./../terraform-aws-security-group-rule-module"
+//  #source = "john-morsley/security-group-rule/aws"
+//
+//  description = "SSH Ingress."
+//
+//  security_group_id = module.ssh-ec2-sg.id
+//
+//  type      = "ingress"
+//  from_port = 0
+//  to_port   = 0
+//  protocol  = "-1"
+//  cidrs     = ["0.0.0.0/0"]
+//
+//}
+
+
+//module "allow-http-ingress-sgr" {
+//
+//  source = "./../terraform-aws-security-group-rule-module"
+//  #source = "john-morsley/security-group-rule/aws"
+//
+//  description = "HTTP Ingress."
+//
+//  security_group_id = module.allow-http-sg.id
+//
+//  type      = "ingress"
+//  from_port = 80
+//  to_port   = 80
+//  protocol  = "tcp"
+//  cidrs     = ["0.0.0.0/0"]
+//
+//}
+//
+//module "allow-http-egress-sgr" {
+//
+//  source = "./../terraform-aws-security-group-rule-module"
+//  #source = "john-morsley/security-group-rule/aws"
+//
+//  description = "Egress for HTTP."
+//
+//  security_group_id = module.allow-http-sg.id
+//
+//  type      = "egress"
+//  from_port = 0
+//  to_port   = 0
+//  protocol  = "-1"
+//  cidrs     = ["0.0.0.0/0"]
+//
+//}
+

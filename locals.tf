@@ -22,7 +22,7 @@ locals {
   )
 
   merged_security_groups_ids = concat(
-    tolist([module.ssh-ec2-sg.id]),
+    tolist([module.ec2-sg.id]),
     var.additional_security_group_ids
   )
 

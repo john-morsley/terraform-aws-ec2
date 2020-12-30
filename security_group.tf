@@ -13,16 +13,30 @@
 #                                 | |    
 #                                 |_|     
 
-module "ssh-ec2-sg" {
+module "ec2-sg" {
 
   source = "./../terraform-aws-security-group-module"
   #source = "john-morsley/security-group/aws"
 
-  name        = "allow-ssh-sg"
-  description = "To allow SSH."
+  name        = "${var.name}-sg"
+  description = "EC2 related traffic."
 
   vpc_id = var.vpc_id
   
   tags = local.merged_tags
   
 }
+
+//module "allow-http-sg" {
+//
+//  source = "./../terraform-aws-security-group-module"
+//  #source = "john-morsley/security-group/aws"
+//
+//  name        = "allow-http-${var.name}-sg"
+//  description = "To allow HTTP."
+//
+//  vpc_id = var.vpc_id
+//
+//  tags = local.merged_tags
+//
+//}

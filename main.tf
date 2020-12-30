@@ -28,9 +28,9 @@ resource "aws_instance" "this" {
   
   availability_zone = var.availability_zone
   
-  depends_on = [
-    module.ssh-ec2-sg
-  ]
+//  depends_on = [
+//    module.ssh-ec2-sg
+//  ]
   
 }
 
