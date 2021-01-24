@@ -9,7 +9,7 @@
 
 resource "null_resource" "install-docker" {
 
-  count = var.docker ? 1 : 0
+  count = var.enable_docker ? 1 : 0
 
   depends_on = [
     null_resource.get-shared-scripts,
@@ -20,7 +20,7 @@ resource "null_resource" "install-docker" {
     type        = "ssh"
     host        = aws_instance.this.public_ip
     user        = "ubuntu"
-    private_key = module.keys.private_key
+    private_key = module.keys[0].private_key
   }
 
   # https://www.terraform.io/docs/provisioners/file.html
@@ -42,7 +42,7 @@ resource "null_resource" "install-docker" {
 
 resource "null_resource" "is-docker-ready" {
 
-  count = var.docker ? 1 : 0
+  count = var.enable_docker ? 1 : 0
 
   depends_on = [
     null_resource.get-shared-scripts,
@@ -53,7 +53,7 @@ resource "null_resource" "is-docker-ready" {
     type        = "ssh"
     host        = aws_instance.this.public_ip
     user        = "ubuntu"
-    private_key = module.keys.private_key
+    private_key = module.keys[0].private_key
   }
 
   # https://www.terraform.io/docs/provisioners/file.html

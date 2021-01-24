@@ -13,18 +13,37 @@
 #                                 | |    
 #                                 |_|     
 
-module "ec2-sg" {
+
+module "allow-ssh-sg" {
 
   source = "./../terraform-aws-security-group-module"
   #source = "john-morsley/security-group/aws"
 
-  name        = "${var.name}-sg"
-  description = "EC2 related traffic."
+  count = var.enable_ssh ? 1 : 0
+
+  name        = "${var.name}-ssh"
+  description = "SSH related traffic for EC2 instance."
 
   vpc_id = var.vpc_id
   
   tags = local.merged_tags
   
+}
+
+module "allow-ssm-sg" {
+
+  source = "./../terraform-aws-security-group-module"
+  #source = "john-morsley/security-group/aws"
+
+  count = var.enable_ssm ? 1 : 0
+
+  name        = "${var.name}-ssm"
+  description = "SSM related traffic for EC2 instance."
+
+  vpc_id = var.vpc_id
+
+  tags = local.merged_tags
+
 }
 
 //module "allow-http-sg" {

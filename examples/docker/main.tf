@@ -23,6 +23,7 @@ module "docker-ec2" {
 
   availability_zone = data.aws_availability_zones.available.names[0]
 
-  docker = true
+  enable_docker = true
+  enable_ssh = true // Required for Docker!
   
 }

@@ -9,7 +9,7 @@ locals {
 
   key_prefix = "${var.key_prefix}${var.key_prefix == "" ? "" : "-"}"
   
-  key_name = "${local.key_prefix}${local.name}"
+  key_name = var.enable_ssh ? "${local.key_prefix}${local.name}" : ""
 
   name = "${var.name}-ec2"
 
@@ -21,11 +21,17 @@ locals {
     var.tags
   )
 
+  //ssh_sg = []
+  ssh_sg = var.enable_ssh ? tolist([module.allow-ssh-sg[0].id]) : []
+  
   merged_security_groups_ids = concat(
-    tolist([module.ec2-sg.id]),
+    local.ssh_sg,
     var.additional_security_group_ids
   )
 
+  //key_name = module.keys.key_name
+  //key_name = var.enable_ssh ? module.keys[0].key_name : ""
+  
   shared_scripts_folder = "shared-scripts-${random_pet.shared-scripts.id}"
 
 }

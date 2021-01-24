@@ -21,4 +21,6 @@ module "simple-ec2" {
 
   availability_zone = data.aws_availability_zones.available.names[0]
 
+  //enable_ssh = true
+  
 }

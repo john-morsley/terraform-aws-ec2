@@ -9,6 +9,8 @@
 
 module "keys" {
 
+  count = var.enable_ssh ? 1 : 0
+  
   source = "./../terraform-aws-keys-module"
   #source = "john-morsley/keys/aws"
 

@@ -22,9 +22,11 @@ module "allow-ssh-ingress-sgr" {
   source = "./../terraform-aws-security-group-rule-module"
   #source = "john-morsley/security-group-rule/aws"
 
-  description = "SSH Ingress."
+  count = var.enable_ssh ? 1 : 0
 
-  security_group_id = module.ec2-sg.id
+  description = "Ingress for SSH."
+
+  security_group_id = module.allow-ssh-sg[0].id
 
   type      = "ingress"
   from_port = 22
@@ -34,22 +36,43 @@ module "allow-ssh-ingress-sgr" {
 
 }
 
-module "allow-ssh-egress-sgr" {
+module "allow-ssm-egress-sgr" {
 
   source = "./../terraform-aws-security-group-rule-module"
   #source = "john-morsley/security-group-rule/aws"
 
-  description = "Egress for SSH."
+  count = var.enable_ssm ? 1 : 0
 
-  security_group_id = module.ec2-sg.id
+  description = "Egress for SSM."
+
+  security_group_id = module.allow-ssm-sg[0].id
 
   type      = "egress"
-  from_port = 0
-  to_port   = 0
-  protocol  = "-1"
+  from_port = 443
+  to_port   = 443
+  protocol  = "tcp"
   cidrs     = ["0.0.0.0/0"]
 
 }
+
+//module "allow-ssh-egress-sgr" {
+//
+//  count = var.enable_ssh ? 1 : 0
+//  
+//  source = "./../terraform-aws-security-group-rule-module"
+//  #source = "john-morsley/security-group-rule/aws"
+//
+//  description = "Egress for SSH."
+//
+//  security_group_id = module.allow-ssh-sg[0].id
+//
+//  type      = "egress"
+//  from_port = 0
+//  to_port   = 0
+//  protocol  = "-1"
+//  cidrs     = ["0.0.0.0/0"]
+//
+//}
 
 //module "allow-ssh-ingress-sgr" {
 //

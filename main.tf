@@ -20,13 +20,16 @@ resource "aws_instance" "this" {
 
   associate_public_ip_address = true
 
-  key_name = module.keys.key_name
+  //key_name = module.keys.key_name
+  key_name = local.key_name
 
   tags = local.merged_tags
   
   vpc_security_group_ids = local.merged_security_groups_ids
   
   availability_zone = var.availability_zone
+  
+  user_data = var.user_data
   
 //  depends_on = [
 //    module.ssh-ec2-sg
@@ -38,6 +41,8 @@ resource "aws_instance" "this" {
 
 resource "null_resource" "is-ec2-ready" {
 
+  count = var.wait_until_ready ? 1 : 0
+  
   depends_on = [
     null_resource.install-docker,
     null_resource.is-docker-ready,

@@ -7,9 +7,13 @@
 
 module "s3_bucket" {
 
+  count = var.enable_ssh ? 1 : 0
+  
   source = "./../terraform-aws-s3-bucket-module"
   #source = "john-morsley/s3-bucket/aws"
 
   name = local.bucket_name
 
+  tags = local.merged_tags
+  
 }

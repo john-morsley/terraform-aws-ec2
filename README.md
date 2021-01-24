@@ -20,6 +20,10 @@ module "ec2" {
 }
 ```
 
+Parameters:
+
+
+
 Prerequisites:
 
 - jq

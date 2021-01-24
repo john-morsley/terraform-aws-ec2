@@ -52,8 +52,20 @@ variable "availability_zone" {
   type        = string
 }
 
-variable "docker" {
+variable "enable_docker" {
   description = "Do we need Docker installed?"
+  type        = bool
+  default     = false
+}
+
+variable "enable_ssh" {
+  description = "Do we need SSH access? (optional, but required for Docker)"
+  type        = bool
+  default     = false
+}
+
+variable "enable_ssm" {
+  description = "Do we need SSM access? (optional)"
   type        = bool
   default     = false
 }
@@ -61,4 +73,17 @@ variable "docker" {
 variable "bucket_prefix" {
   description = "An optional prefix for the bucket."
   type        = string
+  default     = ""
+}
+
+variable "user_data" {
+  description = "User data for the instance (optional)."
+  type        = string
+  default     = ""
+}
+
+variable "wait_until_ready" {
+  description = "Do we wait until this instance is ready? (optional)"
+  type = bool
+  default = false
 }
