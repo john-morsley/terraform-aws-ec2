@@ -46,16 +46,16 @@ module "allow-ssm-sg" {
 
 }
 
-//module "allow-http-sg" {
-//
-//  source = "./../terraform-aws-security-group-module"
-//  #source = "john-morsley/security-group/aws"
-//
-//  name        = "allow-http-${var.name}-sg"
-//  description = "To allow HTTP."
-//
-//  vpc_id = var.vpc_id
-//
-//  tags = local.merged_tags
-//
-//}
+module "allow-internet-access-sg" {
+
+  source = "./../terraform-aws-security-group-module"
+  #source = "john-morsley/security-group/aws"
+
+  name        = "allow-internet-access-${var.name}"
+  description = "To allow the instance to access the Internet."
+
+  vpc_id = var.vpc_id
+
+  tags = local.merged_tags
+
+}

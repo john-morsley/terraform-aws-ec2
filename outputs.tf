@@ -56,7 +56,11 @@ output "private_ip" {
 //}
 
 output "ssh_command" {
-  value = var.enable_ssh ? "chmod 400 keys/${local.key_prefix}${var.name}* && ssh -i keys/${local.key_prefix}${local.name}.pem ubuntu@${aws_instance.this.public_dns} -oStrictHostKeyChecking=no" : "[SSH not enabled]" 
+  value = var.enable_ssh ? "chmod 400 keys/${local.key_prefix}${var.name}* && ssh -i keys/${local.key_prefix}${local.name}.pem ${var.user}@${aws_instance.this.public_dns} -oStrictHostKeyChecking=no" : "[SSH not enabled]" 
+}
+
+output "ssh_security_group_id" {
+  value = module.allow-ssh-sg[0].id
 }
 
 output "s3_bucket_name" {

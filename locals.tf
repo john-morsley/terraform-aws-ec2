@@ -12,7 +12,7 @@ locals {
   key_name = var.enable_ssh ? "${local.key_prefix}${local.name}" : ""
 
   name = "${var.name}-ec2"
-
+  
   bucket_prefix = length(var.bucket_prefix) > 0 ? "${var.bucket_prefix}-" : ""
   bucket_name = "${local.bucket_prefix}${var.name}"
   
@@ -22,10 +22,14 @@ locals {
   )
 
   //ssh_sg = []
-  ssh_sg = var.enable_ssh ? tolist([module.allow-ssh-sg[0].id]) : []
+  ssh_sg_ids = var.enable_ssh ? tolist([module.allow-ssh-sg[0].id]) : []
+  ssm_sg_ids = var.enable_ssm ? tolist([module.allow-ssm-sg[0].id]) : []
+  internet_sg_ids = tolist([module.allow-internet-access-sg.id])
   
   merged_security_groups_ids = concat(
-    local.ssh_sg,
+    local.ssh_sg_ids,
+    local.ssm_sg_ids,
+    local.internet_sg_ids,      
     var.additional_security_group_ids
   )
 

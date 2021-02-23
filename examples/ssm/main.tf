@@ -17,7 +17,7 @@ module "ssm-ec2" {
 
   vpc_id = module.ssm-vpc.id
 
-  public_subnet_id = module.ssm-vpc.public_subnet_ids[0]
+  subnet_id = module.ssm-vpc.public_subnet_ids[0]
 
   availability_zone = data.aws_availability_zones.available.names[0]
   

@@ -19,11 +19,12 @@ module "docker-ec2" {
 
   iam_instance_profile_name = module.iam.instance_profile_name
 
-  public_subnet_id = module.docker-vpc.public_subnet_ids[0]
+  subnet_id = module.docker-vpc.public_subnet_ids[0]
 
   availability_zone = data.aws_availability_zones.available.names[0]
 
   enable_docker = true
   enable_ssh = true // Required for Docker!
+  wait_until_ready = true // Required for Docker!
   
 }

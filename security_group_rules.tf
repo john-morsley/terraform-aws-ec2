@@ -32,7 +32,8 @@ module "allow-ssh-ingress-sgr" {
   from_port = 22
   to_port   = 22
   protocol  = "tcp"
-  cidrs     = ["0.0.0.0/0"]
+  //cidrs     = ["0.0.0.0/0"]
+  cidrs = var.ssh_cidrs
 
 }
 
@@ -55,24 +56,22 @@ module "allow-ssm-egress-sgr" {
 
 }
 
-//module "allow-ssh-egress-sgr" {
-//
-//  count = var.enable_ssh ? 1 : 0
-//  
-//  source = "./../terraform-aws-security-group-rule-module"
-//  #source = "john-morsley/security-group-rule/aws"
-//
-//  description = "Egress for SSH."
-//
-//  security_group_id = module.allow-ssh-sg[0].id
-//
-//  type      = "egress"
-//  from_port = 0
-//  to_port   = 0
-//  protocol  = "-1"
-//  cidrs     = ["0.0.0.0/0"]
-//
-//}
+module "allow-internet-access-egress-sgr" {
+  
+  source = "./../terraform-aws-security-group-rule-module"
+  #source = "john-morsley/security-group-rule/aws"
+
+  description = "Egress for Internet."
+
+  security_group_id = module.allow-internet-access-sg.id
+
+  type      = "egress"
+  from_port = 0
+  to_port   = 0
+  protocol  = "-1"
+  cidrs     = ["0.0.0.0/0"]
+
+}
 
 //module "allow-ssh-ingress-sgr" {
 //

@@ -16,3 +16,7 @@ variable "vpc_cidr" {
 variable "public_subnet_cidr" {
   type = list(string)
 }
+
+variable "instance_type" {
+  type = string
+}

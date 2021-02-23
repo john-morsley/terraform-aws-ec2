@@ -9,14 +9,8 @@ locals {
 
   all_cidr_block = "0.0.0.0/0"
 
-  # See README for details.
-  cluster_id = "kubernetes.io/cluster/${random_pet.cluster-name.id}"
-
-  # See README for details.
-  cluster_id_tag = {
-    "${local.cluster_id}" = "owned"
-  }
-
-  name = "${var.name}-${random_pet.name.id}"
+  name         = "${var.name}-${random_pet.name.id}"
+  bastion_name = "${var.bastion_name}-${random_pet.name.id}"
+  server_name  = "${var.server_name}-${random_pet.name.id}"
 
 }

@@ -4,21 +4,20 @@
 #       \ \/ /   |  ___/  | |     
 #        \  /    | |      | |____
 #         \/     |_|       \_____|
+#                             
 
-module "rke-vpc" {
+module "bastion-vpc" {
 
   source = "./../../../terraform-aws-vpc-module"
-  #source = "john-morsley/vpc/aws"
+  //source = "john-morsley/vpc/aws"
 
   name = local.name
 
   vpc_cidr = var.vpc_cidr
 
-  public_subnet_cidrs = var.public_subnet_cidr
+  public_subnet_cidrs  = var.public_subnet_cidrs
+  private_subnet_cidrs = var.private_subnet_cidrs
 
   availability_zones = [data.aws_availability_zones.available.names[0]]
-
-  # See README for details.
-  tags = local.cluster_id_tag
 
 }

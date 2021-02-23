@@ -13,7 +13,13 @@ resource "null_resource" "install-docker" {
 
   depends_on = [
     null_resource.get-shared-scripts,
-    aws_instance.this
+    aws_instance.this,
+    module.allow-ssh-sg,
+    module.allow-ssh-ingress-sgr,
+    module.allow-internet-access-sg,
+    module.allow-internet-access-egress-sgr,
+    module.keys,
+    null_resource.is-ec2-ready
   ]
 
   connection {
@@ -46,7 +52,10 @@ resource "null_resource" "is-docker-ready" {
 
   depends_on = [
     null_resource.get-shared-scripts,
-    null_resource.install-docker
+    null_resource.install-docker,
+    module.allow-ssh-sg,
+    module.allow-ssh-ingress-sgr,
+    module.keys
   ]
 
   connection {

@@ -17,6 +17,11 @@ variable "ami" {
   type = string
 }
 
+variable "user" {
+  type = string
+  default = null
+}
+
 variable "instance_type" {
   type    = string
   default = "t2.nano"
@@ -27,8 +32,9 @@ variable "iam_instance_profile_name" {
   default = null
 }
 
-variable "public_subnet_id" {
+variable "subnet_id" {
   type = string
+  default = null
 }
 
 variable "additional_security_group_ids" {
@@ -86,4 +92,14 @@ variable "wait_until_ready" {
   description = "Do we wait until this instance is ready? (optional)"
   type = bool
   default = false
+}
+
+variable "associate_public_ip_address" {
+  type = bool
+  default = false
+}
+
+variable "ssh_cidrs" {
+  type = list(string)
+  default = ["0.0.0.0/0"]
 }

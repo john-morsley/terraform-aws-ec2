@@ -15,6 +15,14 @@ output "ec2_public_dns" {
   value = module.rke-ec2.public_dns
 }
 
+
+output "private_ip" {
+  value = module.rke-ec2.private_ip
+}
+
+output "public_ip" {
+  value = module.rke-ec2.public_ip
+}
 output "ssh_command" {
   value = module.rke-ec2.ssh_command
 }

@@ -14,11 +14,11 @@ resource "aws_instance" "this" {
 
   iam_instance_profile = var.iam_instance_profile_name
 
-  subnet_id = var.public_subnet_id
+  subnet_id = var.subnet_id
 
   monitoring = true
 
-  associate_public_ip_address = true
+  associate_public_ip_address = var.associate_public_ip_address
 
   //key_name = module.keys.key_name
   key_name = local.key_name
@@ -44,8 +44,6 @@ resource "null_resource" "is-ec2-ready" {
   count = var.wait_until_ready ? 1 : 0
   
   depends_on = [
-    null_resource.install-docker,
-    null_resource.is-docker-ready,
     null_resource.get-shared-scripts,
     aws_instance.this
   ]

@@ -17,7 +17,7 @@ module "simple-ec2" {
 
   vpc_id = module.simple-vpc.id
 
-  public_subnet_id = module.simple-vpc.public_subnet_ids[0]
+  subnet_id = module.simple-vpc.public_subnet_ids[0]
   
   availability_zone = data.aws_availability_zones.available.names[0]
 
